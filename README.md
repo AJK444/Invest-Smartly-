@@ -1,0 +1,2 @@
+# Invest-Smartly-
+Investment Platform
