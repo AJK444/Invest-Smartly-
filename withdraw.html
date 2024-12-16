@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        section {
+            background: #102C57;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 1em;
+            color: #ddd;
+            margin: 10px 0 5px;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.1em;
+            margin-top: 20px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #0073e6;
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            background: #ff6347;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.1em;
+            margin-top: 20px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: #ff4500;
+            transform: scale(1.05);
+        }
+
+        .pop-up {
+            font-size: 1.2em;
+            color: #1e90ff;
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            font-family: 'Georgia', serif;
+        }
+
+        footer {
+            background: #0b2447;
+            color: #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>Availble Balance <span id="total-usdt">1000 USDT</span>  <span id="total-pkr">270,000 PKR</span></h2>
+        
+        <form id="withdraw-form">
+            <label for="withdraw-amount">Withdraw Amount:</label>
+            <input type="number" id="withdraw-amount" name="withdraw-amount" placeholder="Enter amount" min="1" required>
+
+            <label for="withdraw-type">Withdraw Type:</label>
+            <select id="withdraw-type" name="withdraw-type" required onchange="toggleFields()">
+                <option value="">-- Select Type --</option>
+                <option value="usdt">USDT</option>
+                <option value="pkr">PKR</option>
+            </select>
+
+            <!-- USDT Wallet Address -->
+            <div id="usdt-fields" style="display: none;">
+                <label for="usdt-wallet">USDT Wallet Address (TRC20):</label>
+                <input type="text" id="usdt-wallet" name="usdt-wallet" placeholder="Enter your USDT Wallet Address">
+            </div>
+
+            <!-- Bank Details -->
+            <div id="pkr-fields" style="display: none;">
+                <label for="bank-name">Bank Name:</label>
+                <input type="text" id="bank-name" name="bank-name" placeholder="Enter your Bank Name">
+                
+                <label for="account-number">Account Number:</label>
+                <input type="number" id="account-number" name="account-number" placeholder="Enter your Account Number">
+
+                <label for="branch-code">Branch Code:</label>
+                <input type="number" id="branch-code" name="branch-code" placeholder="Enter Branch Code" required>
+                
+                <label for="account-holder">Account Holder Name:</label>
+                <input type="text" id="account-holder" name="account-holder" placeholder="Enter Account Holder Name">
+            </div>
+
+            <button type="button" onclick="submitWithdraw()">Submit Withdraw</button>
+        </form>
+
+        <div class="pop-up" id="withdraw-result" style="display: none;"></div>
+
+        <button class="back-button" onclick="window.location.href='index.html'">Back to Home</button>
+    </section>
+
+    <footer>
+        <p>@All Rights Reserved &copy; 2024</p>
+    </footer>
+
+    <script>
+        const conversionRate = 270; // 1 USDT = 270 PKR
+        let totalBalanceUSDT = 1000;
+        let totalBalancePKR = totalBalanceUSDT * conversionRate;
+
+        // Update total balance display
+        function updateBalances() {
+            document.getElementById("total-usdt").innerText = `${totalBalanceUSDT.toFixed(2)} USDT`;
+            document.getElementById("total-pkr").innerText = `${totalBalancePKR.toLocaleString()} PKR`;
+        }
+
+        updateBalances();
+
+        // Toggle fields based on withdraw type
+        function toggleFields() {
+            const withdrawType = document.getElementById("withdraw-type").value;
+            document.getElementById("usdt-fields").style.display = withdrawType === "usdt" ? "block" : "none";
+            document.getElementById("pkr-fields").style.display = withdrawType === "pkr" ? "block" : "none";
+        }
+
+        // Submit withdraw
+        function submitWithdraw() {
+            const withdrawAmount = parseFloat(document.getElementById("withdraw-amount").value);
+            const withdrawType = document.getElementById("withdraw-type").value;
+
+            if (withdrawType === "usdt" && withdrawAmount <= totalBalanceUSDT) {
+                const fee = withdrawAmount * 0.1;
+                totalBalanceUSDT -= withdrawAmount;
+                document.getElementById("withdraw-result").innerHTML = 
+                    `Your withdraw request is submitted successfully. It will take 1 to 4 business days, and a 10% withdraw fee is applicable.`;
+            } else if (withdrawType === "pkr" && withdrawAmount >= 34000 && withdrawAmount <= totalBalancePKR) {
+                totalBalancePKR -= withdrawAmount;
+                document.getElementById("withdraw-result").innerHTML = 
+                    `Your withdraw request is submitted successfully. It will take 1 to 4 business days, and a 10% withdraw fee is applicable.`;
+            } else {
+                alert("Invalid withdraw amount or insufficient balance.");
+                return;
+            }
+
+            document.getElementById("withdraw-result").style.display = "block";
+            updateBalances();
+        }
+    </script>
+</body>
+</html>

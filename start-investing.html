@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Investing | Invest Smartly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: #fff;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #0b2447;
+            color: #ffffff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #102C57;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #1a3d7c;
+            border-radius: 5px;
+        }
+
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .section-heading {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0073e6;
+        }
+
+        footer {
+            background: #0b2447;
+            color: #ddd;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9em;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+
+    <section>
+        <h2 class="section-heading">Get Started with Your Investment Journey</h2>
+        <p>Invest Smartly provides you the tools and opportunities to grow your funds. To get started, simply deposit your funds, choose a plan, and let us help you make your investment grow!</p>
+
+        <p>Fill out the details below to begin your investment:</p>
+
+        <!-- Form with action redirecting to deposit.html -->
+        <form action="deposit.html" method="GET">
+            <label for="investment-amount">Enter Investment Amount (in USDT):</label>
+            <input type="number" id="investment-amount" name="investment-amount" placeholder="Enter amount" required>
+            <button type="submit">Start Investing</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>@All Rights Reserved &copy; 2024 Invest Smartly Platform</p>
+    </footer>
+
+</body>
+</html>

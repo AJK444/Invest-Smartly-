@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit - Invest Smartly Platform</title>
+    <style>
+        /* General Styling */
+        body {
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background: #0b2447;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        header img {
+            width: 40px;
+            height: 40px;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #102C57;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .section {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .section h2 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .details-item {
+            margin: 10px 0;
+            background: #0b2447;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .details-item span {
+            font-size: 0.9em;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            max-width: 70%; /* Ensure address fits within bounds */
+        }
+
+        .details-item button {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            flex-shrink: 0; /* Prevent button from shrinking */
+        }
+
+        .details-item button:hover {
+            background: #0073e6;
+        }
+
+        input[type="number"], input[type="file"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        button {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background: #0073e6;
+            transform: scale(1.05);
+        }
+
+        .back-home {
+            margin-top: 20px;
+        }
+
+        .important-note {
+            background: #ffcc00;
+            color: #000;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h2>Minimum Deposit Amount 180 USDT</h2>
+        <h3>USDT TRC20</h3>
+        <div class="details-item">
+            <span>TJfHZt1vAGi8Wn3Vz9ewFH3SpETNaPmmDX</span>
+            <button onclick="copyToClipboard('TJfHZt1vAGi8Wn3Vz9ewFH3SpETNaPmmDX')">Copy</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>BNB</h3>
+        <div class="details-item">
+            <span>vAGi8Wn3Vz9ewFH3SpETN</span>
+            <button onclick="copyToClipboard('vAGi8Wn3Vz9ewFH3SpETN')">Copy</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="important-note">
+            Please notify us on telegram (@investsmartly) after submiting deposit. Without this, your deposit will not be added.
+        </div>
+
+    <button class="back-home" onclick="window.location.href='index.html'">Back to Home</button>
+
+    <!-- JavaScript -->
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        function submitDeposit(event) {
+            event.preventDefault();
+
+            const depositAmount = document.getElementById("deposit-amount").value;
+            const receipt = document.getElementById("receipt").files[0];
+
+            if (!depositAmount || !receipt) {
+                alert("Please fill out all fields!");
+                return;
+            }
+
+            alert("Thank you for your deposit. Your deposit will be confirmed within 3 to 24 hours.");
+            window.location.href = "index.html"; // Replace with your home page URL
+        }
+    </script>
+    <!-- Add this modal HTML before the closing body tag -->
+<div id="popup" style="display: none;">
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 9999;">
+        <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: black; width: 90%; max-width: 400px; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);">
+            <h3 style="color: #333;">Deposit Submitted</h3>
+            <p style="color: #555;">Thank you for your deposit! It will be confirmed within 3 to 24 hours.</p>
+            <button style="background: #1e90ff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Update the submitDeposit function to display the pop-up
+    function submitDeposit(event) {
+        event.preventDefault();
+
+        const depositAmount = document.getElementById("deposit-amount").value;
+        const receipt = document.getElementById("receipt").files[0];
+
+        if (!depositAmount || !receipt) {
+            alert("Please fill out all fields!");
+            return;
+        }
+
+        // Show the pop-up modal
+        document.getElementById("popup").style.display = "block";
+    }
+
+    // Function to close the pop-up and redirect
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+        window.location.href = "index.html"; // Redirect to home page after closing the popup
+    }
+</script>
+
+    
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Top Investors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .investor-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #102C57;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .investor-item {
+            background: #1e3c72;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+
+        .investor-name {
+            font-size: 1.2em;
+        }
+
+        .investor-info {
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='index.html'">Back to Home</button>
+    <h1>Our Top Investors profit return who completed there investment period</h1>
+    <div class="investor-container">
+        <!-- Investor Items Start -->
+        <div id="investor-list">
+            <!-- JavaScript will populate this dynamically -->
+        </div>
+        <!-- Investor Items End -->
+    </div>
+
+    <script>
+        // Array of random investor names
+        const investors = [
+            "John beh", "Jane Smith", "Alice Johnson", "Robert Brown", "Emily Davis", 
+            "Michael Wilson", "Sophia Moore", "Daniel Taylor", "Olivia Anderson", 
+            "William Thomas", "Ava Martinez", "James White", "Isabella Harris", 
+            "Alexander Clark", "Mia Lewis", "Benjamin Hall", "Charlotte Allen", 
+            "Ethan Young", "Amelia Scott", "Henry King", "Ella Lopez", 
+            "Jacob Wright", "Grace Adams", "Sebastian Walker", "Victoria Nelson", 
+            "Jack Green", "Abigail Carter", "Lucas Hill", "Sofia Turner", 
+            "Nathan Rivera", "Chloe Perez", "Matthew Collins", "Lily Murphy", 
+            "David Rogers", "Layla Barnes", "Samuel Cox", "Hannah Mitchell", 
+            "Anthony Kelly", "Scarlett Edwards", "Joseph Morgan", "Aria Flores", 
+            "Gabriel Reed", "Luna Hughes"
+        ];
+
+        // Generate random investment amount between 180 and 1900 USDT
+        function randomInvestment() {
+            return Math.floor(Math.random() * (1900 - 180 + 1)) + 180;
+        }
+
+        // Fixed profit return percentage
+        const fixedProfit = 20; // Change this value if needed
+
+        // Populate investor data
+        const investorList = document.getElementById("investor-list");
+        investors.forEach((name) => {
+            const investment = randomInvestment();
+            const investorItem = `
+                <div class="investor-item">
+                    <span class="investor-name">${name}</span>
+                    <span class="investor-info">Investment: ${investment} USDT | Profit: ${fixedProfit}%</span>
+                </div>
+            `;
+            investorList.innerHTML += investorItem;
+        });
+    </script>
+</body>
+</html>

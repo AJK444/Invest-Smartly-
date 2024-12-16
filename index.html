@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invest Smartly</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: #fff;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #0b2447;
+            color: #ffffff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #102C57;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #1a3d7c;
+            border-radius: 5px;
+        }
+
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .section-heading {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #home, #deposit, #withdraw, #how-we-work, #contact, #profit-calculator, #top-investors {
+            background: #102C57;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        button {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0073e6;
+        }
+
+        footer {
+            background: #0b2447;
+            color: #ddd;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9em;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Form Inputs */
+        input[type="number"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            nav a {
+                padding: 8px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Invest Smartly</h1>
+    </header>
+    <nav>
+        <a href="home">Home</a>
+        <a href="about-us.html">About Us</a>
+        <a href="how-we-work.html">How We Work</a>
+        <a href="contact-us.html">Contact Us</a>
+        <a href="profit-calculator.html">Profit Calculator</a>
+        <a href="our-top-investors.html">Our Top Investors</a>
+        <a href="start-investing.html">Start Investing</a>
+        <a href="how-to-Liquidate.html">How to Liquidate</a>
+    </a>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h2 class="section-heading">Welcome to Our Invest Smartly Platform</h2>
+        <p>Grow your savings with us and earn returns between 10% to 40% in a single investment period.</p>
+    </section>
+    
+    <footer>
+        <p>@All Rights Reserved &copy; 2024 Invest Smartly Platform</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function calculateProfit() {
+            const investment = document.getElementById("investment").value;
+            if (investment && investment > 0) {
+                const minProfit = (investment * 1.15).toFixed(2);
+                const maxProfit = (investment * 1.40).toFixed(2);
+                document.getElementById("result").innerHTML = 
+                    `Your profit will range between <strong>$${minProfit}</strong> and <strong>$${maxProfit}</strong>.`;
+            } else {
+                document.getElementById("result").innerHTML = "Please enter a valid investment amount.";
+            }
+        }
+    </script>
+</body>
+</html>

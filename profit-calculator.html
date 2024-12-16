@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profit Calculator</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        section {
+            background: #102C57;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 1em;
+            color: #ddd;
+            margin: 10px 0 5px;
+        }
+
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.1em;
+            margin-top: 20px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #0073e6;
+            transform: scale(1.05);
+        }
+
+        .result {
+            font-size: 1.2em;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: #0b2447;
+            color: #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .back-button {
+            background: #ff6347;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.1em;
+            margin-top: 20px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: #ff4500;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>Profit Calculator</h2>
+        <form id="profit-calculator-form">
+            <label for="investment-amount">Enter Your Investment (in USD):</label>
+            <input type="number" id="investment-amount" name="investment-amount" placeholder="Enter your investment" required>
+
+            <label for="return-rate">Select Return Percentage:</label>
+            <select id="return-rate" name="return-rate" required>
+                <option value="10">10%</option>
+                <option value="15">15%</option>
+                <option value="20">20%</option>
+                <option value="25">25%</option>
+                <option value="30">30%</option>
+                <option value="35">35%</option>
+                <option value="40">40%</option>
+            </select>
+
+            <button type="button" onclick="calculateProfit()">Calculate Profit</button>
+        </form>
+
+        <div class="result" id="profit-result" style="display: none;">
+            <p>Your estimated profit is: <strong id="calculated-profit"></strong> USD</p>
+        </div>
+
+        <button class="back-button" onclick="window.location.href='index.html'">Back to Home</button>
+    </section>
+
+    <footer>
+        <p>@All Rights Reserved &copy; 2024</p>
+    </footer>
+
+    <script>
+        function calculateProfit() {
+            const investmentAmount = parseFloat(document.getElementById('investment-amount').value);
+            const returnRate = parseFloat(document.getElementById('return-rate').value);
+
+            if (isNaN(investmentAmount) || investmentAmount <= 0) {
+                alert("Please enter a valid investment amount.");
+                return;
+            }
+
+            // Calculate the profit
+            const profit = (investmentAmount * returnRate) / 100;
+            const totalAmount = investmentAmount + profit;
+
+            // Display the result
+            document.getElementById('calculated-profit').textContent = profit.toFixed(2);
+            document.getElementById('profit-result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
